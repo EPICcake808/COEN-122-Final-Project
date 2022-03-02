@@ -160,6 +160,39 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
         JumpM = 0;
     end
     
+    // branch if Z
+    else if(opcode == 4'b1001)
+    begin
+        ALUOp = 3'b000;
+        MemWrite = 0;
+        BranchZ = 1;
+        BranchN = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
+    
+    // jump memory
+    else if(opcode == 4'b1010)
+    begin
+        ALUOp = 3'b000;
+        MemRead = 1;
+        MemWrite = 0;
+        BranchN = 0;
+        BranchZ = 0;
+        RegWrite = 0;
+        JumpM = 1;
+    end
+    
+    // branch if N
+    else if(opcode == 4'b1011)
+    begin
+        ALUOp = 3'b000;
+        MemWrite = 0;
+        BranchN = 1;
+        BranchZ = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
     
     end
     
