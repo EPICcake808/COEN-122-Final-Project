@@ -22,10 +22,10 @@
 //This is the buffer for IF to ID
 module IF_ID(clk, PC_in, inst_mem, PC_out, inst_out);
     input [31:0] PC_in;
-    input [31:0] inst_mem;
+    input [21:0] inst_mem;
     input clk;
     output reg [31:0] PC_out;
-    output reg [31:0] inst_out;
+    output reg [21:0] inst_out;
     
     always@(posedge clk)
         begin
