@@ -171,7 +171,7 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
         MemWrite = 0;
         BranchZ = 1;
         BranchN = 0;
-        RegWrite = 1;
+        RegWrite = 0;
         JumpM = 0;
     end
     
@@ -194,7 +194,7 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
         MemWrite = 0;
         BranchN = 1;
         BranchZ = 0;
-        RegWrite = 1;
+        RegWrite = 0;
         JumpM = 0;
     end
     
