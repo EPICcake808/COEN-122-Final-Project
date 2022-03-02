@@ -20,10 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ProgramCounter(PCNext, PCResult, Clk);
-    input [31:0] PCNext;
+module ProgramCounter(PCin, PCout, Clk);
+    input [31:0] PCin
     input Clk;
-    output reg [31:0] PCResult;
+    output reg [31:0] PCout;
     
 //Implemented in testbench (I think)    
 /*    
@@ -31,19 +31,25 @@ module ProgramCounter(PCNext, PCResult, Clk);
     begin
         PCResult <= 32'h00000000;
     end
-*/    
+*/
+    initial
+    begin
+        PCin = 0;
+    end
+    
     always @(posedge Clk)
     begin
-        PCResult <= PCNext;
+        if(PCin)
+            PCout = PCin;
     end
 endmodule
 
-module PCAdder(PCResult, PCAddResult);
-    input [31:0] PCResult;
+module PCAdder(PCout, PCAddResult);
+    input [31:0] PCout;
     output reg [31:0] PCAddResult;
     
-    always @(PCResult)
+    always @(PCout)
     begin
-        PCAddResult <= PCResult + 32'h00000004;
+        PCAddResult = PCout + 32'h00000004;
     end
 endmodule
