@@ -50,6 +50,6 @@ module PCAdder(PCout, PCAddResult);
     
     always @(PCout)
     begin
-        PCAddResult = PCout + 32'h00000004;
+        PCAddResult = PCout + 32'h00000001;
     end
 endmodule
