@@ -57,9 +57,12 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
         ALUOp = 3'b100;
         MemWrite = 0;
         PC_Control = 1;
-        MemtoReg = 1;
+        BranchZ = 0;
+        BranchN = 0;
+        MemtoReg = 0;
         Jump = 0;
         RegWrite = 1;
+        JumpM = 0;
     end
     
     //load
