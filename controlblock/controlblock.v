@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, Branch, MemtoReg, Jump, RegWrite, JumpM);
+module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, Jump, RegWrite, JumpM);
     input clk;
     input [3:0]opcode;
     output reg ALUSrc;
@@ -28,7 +28,8 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
     output reg MemRead;
     output reg MemWrite;
     output reg PC_Control;
-    output reg  Branch;
+    output reg BranchN;
+    output reg BranchZ;
     output reg MemtoReg;
     output reg Jump;
     output reg RegWrite;
@@ -42,7 +43,8 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
     MemRead = 0;
     MemWrite = 0;
     PC_Control = 0;
-    Branch = 0;
+    BranchN = 0;
+    BranchZ= 0;
     MemtoReg = 0;
     Jump = 0;
     RegWrite = 0;
@@ -62,14 +64,101 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
     //load
     else if(opcode == 4'b1110)
     begin
+        ALUOp = 3'b000;
+        MemRead = 1;
+        MemWrite = 0;
+        BranchN = 0;
+        BranchZ = 0;
+        MemtoReg = 1;
+        Jump = 0;
+        RegWrite = 1;
+        JumpM = 0;
     end
     
     //store
     else if(opcode == 4'b0011)
     begin
+        ALUOp = 3'b000;
+        MemRead = 0;
+        MemWrite = 1;
+        BranchN = 0;
+        BranchZ = 0;
+        Jump = 0;
+        RegWrite = 0;
+        JumpM = 0;
     end
     
-
+    //add
+    else if(opcode == 4'b0100)
+    begin
+        ALUSrc = 0;
+        ALUOp = 3'b100;
+        MemWrite = 0;
+        PC_Control = 0;
+        BranchN = 0;
+        BranchZ = 0;
+        MemtoReg = 0;
+        Jump = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
+    
+    //increment
+    else if(opcode == 4'b0101)
+    begin
+        ALUSrc = 1;
+        ALUOp = 3'b100;
+        MemWrite = 0;
+        PC_Control = 0;
+        BranchN = 0;
+        BranchZ = 0;
+        MemtoReg = 0;
+        Jump = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
+    
+    //negate
+    else if(opcode == 4'b0110)
+    begin
+        ALUOp = 3'b010;
+        MemWrite = 0;
+        PC_Control = 0;
+        BranchN = 0;
+        BranchZ = 0;
+        MemtoReg = 0;
+        Jump = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
+    
+    //subtract
+    else if(opcode == 4'b0111)
+    begin
+        ALUSrc = 0;
+        ALUOp = 3'b001;
+        MemWrite = 0;
+        PC_Control = 0;
+        BranchN = 0;
+        BranchZ= 0;
+        MemtoReg = 0;
+        Jump = 0;
+        RegWrite = 1;
+        JumpM = 0;
+    end
+    
+    //jump
+    else if(opcode == 4'b1000)
+    begin
+        ALUOp = 3'b111;
+        MemWrite = 0;
+        PC_Control = 0;
+        BranchN = 0;
+        BranchZ= 0;
+        Jump = 1;
+        RegWrite = 0;
+        JumpM = 0;
+    end
     
     
     end
