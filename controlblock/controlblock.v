@@ -55,6 +55,7 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
     begin
         ALUSrc = 1;
         ALUOp = 3'b100;
+        MemWrite = 0;
         PC_Control = 1;
         MemtoReg = 1;
         Jump = 0;
