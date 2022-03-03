@@ -73,9 +73,9 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_i
              imm_out = imm_in;
              ALUSrc_out = ALUSrc_in;
              ALUOp_out = ALUOp_in;
-            MemRead_out = MemRead)_in;
-            MemWrite_out = MemWrite_in;
-            PC_Control_out = PC_Control_in;
+             MemRead_out = MemRead_in;
+             MemWrite_out = MemWrite_in;
+             PC_Control_out = PC_Control_in;
              MemtoReg_out = MemtoReg_in;
              Jump_out = Jump_in;
              RegWrite_out = RegWrite_in;
