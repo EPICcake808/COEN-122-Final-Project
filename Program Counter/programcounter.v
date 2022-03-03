@@ -21,9 +21,9 @@
 
 
 module ProgramCounter(PCin, PCout, Clk);
-    input [31:0] PCin
+    input [7:0] PCin
     input Clk;
-    output reg [31:0] PCout;
+    output reg [7:0] PCout;
     
 //Implemented in testbench (I think)    
 /*    
@@ -45,11 +45,11 @@ module ProgramCounter(PCin, PCout, Clk);
 endmodule
 
 module PCAdder(PCout, PCAddResult);
-    input [31:0] PCout;
-    output reg [31:0] PCAddResult;
+    input [7:0] PCout;
+    output reg [7:0] PCAddResult;
     
     always @(PCout)
     begin
-        PCAddResult = PCout + 32'h00000001;
+        PCAddResult = PCout + 8'b00000001;
     end
 endmodule
