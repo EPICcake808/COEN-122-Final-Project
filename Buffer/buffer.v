@@ -36,7 +36,7 @@ module IF_ID(clk, PC_in, inst_mem, PC_out, inst_out);
 endmodule
 
 //This is the buffer for ID to EX
-module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_in, PC_Control_in, BranchN_in, BranchZ_in, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, PC_out, reg1, reg2, imm_out, ALUSrc_out, ALUOp_out, MemWrite_out, PC_Control_out, BranchN_out, BranchZ_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
+module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_in, PC_Control_in,  MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, PC_out, reg1, reg2, imm_out, ALUSrc_out, ALUOp_out, MemWrite_out, PC_Control_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
     input [31:0] PC_in;
     input [31:0] data1;
     input [31:0] data2;
@@ -46,8 +46,6 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_i
     input MemRead_in;
     input MemWrite_in;
     input PC_Control_in;
-    input BranchN_in;
-    input BranchZ_in;
     input MemtoReg_in;
     input Jump_in;
     input RegWrite_in;
@@ -62,8 +60,6 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_i
     output reg MemRead_out;
     output reg MemWrite_out;
     output reg PC_Control_out;
-    output reg BranchN_out;
-    output reg BranchZ_out;
     output reg MemtoReg_out;
     output reg Jump;
     output reg RegWrite;
@@ -80,8 +76,6 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_i
             MemRead_out = MemRead)_in;
             MemWrite_out = MemWrite_in;
             PC_Control_out = PC_Control_in;
-            BranchN_out = BranchN_in;
-            BranchZ_out = BranchZ_in;
              MemtoReg_out = MemtoReg_in;
              Jump_out = Jump_in;
              RegWrite_out = RegWrite_in;
