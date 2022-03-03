@@ -67,7 +67,7 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_i
     output reg MemtoReg_out;
     output reg Jump;
     output reg RegWrite;
-    outpure reg JumpM;
+    output reg JumpM;
     
     always@(posedge clk)
         begin
@@ -92,7 +92,7 @@ endmodule
 //This is the buffer for EX to MEM
 module EX_M_WB (clk, Zero_in, Neg_in, ALU_in, reg2_in, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, Zero_out, Neg_out, ALU_out, reg2_out,  MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
     input Zero_in;
-    input Neg_in
+    input Neg_in;
     input [31:0] ALU_in;
     input [31:0] reg2_in;
     input MemtoReg_in;
@@ -107,7 +107,7 @@ module EX_M_WB (clk, Zero_in, Neg_in, ALU_in, reg2_in, MemtoReg_in, Jump_in, Reg
     output reg MemtoReg_out;
     output reg Jump;
     output reg RegWrite;
-    outpure reg JumpM;
+    output reg JumpM;
     
     always@(posedge clk)
         begin
