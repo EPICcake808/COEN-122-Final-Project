@@ -22,7 +22,7 @@
 
 module instruction_memory(clk, address, instruction);
     input clk;
-    input [7:0] address;
+    input [31:0] address;
     output reg [31:0] instruction;
     
     wire[31:0] instrs [255:0];

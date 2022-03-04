@@ -19,13 +19,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module write_back(clk, AlU_result, read_data, MemtoReg, mux_output)
+module write_back(clk, AlU_result, read_data, MemtoReg);
   input clk;
   input [31:0] ALU_result;
   input [31:0] read_data;
   input MemtoReg;
-  output reg [31:0] mux_output;
+  wire [31:0] mux_output;
   
-  mux21 m1(mux_output, read_data, ALU_result, mux_output);
+  mux21_32bit m1(mux_output, read_data, ALU_result, mux_output);
   
 endmodule
