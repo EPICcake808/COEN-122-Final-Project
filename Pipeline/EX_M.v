@@ -32,7 +32,7 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemWrite, MemR
   input MemWrite;
   input MemRead;
   
-  //delete inc from ALU???
+  //delete inc from ALU???  <=  Yes, actually I don't think the ALU takes an increment control
   wire [31:0] input1;
   wire [31:0] input2;
   wire [31:0] ALU_result;
