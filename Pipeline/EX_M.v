@@ -45,7 +45,8 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemWrite, MemR
   reg inc;
   reg neg;
   reg sub;
-  
+ 
+//IMPORTANT  
 //No outputs here because synthesis didn't like it
 //For the top level CPU file gonna have to copy paste the code and use lots of wires
   
