@@ -1,12 +1,11 @@
-
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Ian Ohari
+// Engineer: 
 // 
-// Create Date: 01/25/2022 02:59:30 PM
-// Design Name: 8 Bit ALU
-// Module Name: alu
+// Create Date: 03/08/2022 12:22:16 AM
+// Design Name: 
+// Module Name: id
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,23 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_decode(clk, instr_in, rt, data_in, PC, Zero, Neg);
+module id(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, RegWrite, Jump, JumpM);
   input clk;
-  input [31:0] instr_in;
-  input [5:0] rt;
   input [31:0] data_in;
   input [31:0] PC;
-  wire ALUSrc;
-  wire [2:0] ALUOp;
-  wire MemRead;
-  wire MemWrite;
-  wire PC_Control;
-  wire BranchN;
-  wire BranchZ;
-  wire MemtoReg;
-  wire Jump;
-  wire RegWrite;
-  wire JumpM;
+  input [31:0] instr_in;
+  input ALUSrc;
+  input [2:0] ALUOp;
+  input MemRead;
+  input MemWrite;
+  input PC_Control;
+  input BranchN;
+  input BranchZ;
+  input MemtoReg;
+  input Jump;
+  input RegWrite;
+  input JumpM;
   input Zero;
   input Neg;
   
@@ -50,9 +48,9 @@ module instruction_decode(clk, instr_in, rt, data_in, PC, Zero, Neg);
   wire [31:0] imm_out;
   wire [31:0] PC_out;
 
-  controlblock control(clk, instr_in[31:28], ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, Jump, RegWrite, JumpM); 
+  controlblock control(clk, instr_in[31:28], ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, Jump, RegWrite, Jump); 
 
-  register_file regfile(clk, RegWrite, instr_in[21:16], instr_in[15:10], rt, data_in, rs_out, rt_out);
+  register_file regfile(clk, RegWrite, instr_in[27:22], instr_in[21:16], instr_in[15:10], data_in, rs_out, rt_out);
 
   immgen imm(instr_in[21:0], imm_out);
 
