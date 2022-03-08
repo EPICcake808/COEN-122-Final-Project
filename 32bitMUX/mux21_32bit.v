@@ -19,6 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module mux21(out, b, zero, s);
+    output out;
+    input b, zero, s;
+    wire T1, T2, sbar;
+    
+    not (sbar, s);
+    and (T1, zero, s), (T2, b, sbar);
+    or (out, T1, T2);
+endmodule
 
 module mux21_32bit(Out, A, B, S);
     input [31:0] A;
