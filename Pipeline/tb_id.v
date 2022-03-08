@@ -39,9 +39,9 @@ module tb_id();
   reg Zero;
   reg Neg;
   
-  reg branch_out;
-  reg branchN_out;
-  reg branchZ_out;
+  wire branch_out;
+  wire branchN_out;
+  wire branchZ_out;
 
   wire [31:0] rs_out;
   wire [31:0] rt_out;
@@ -54,13 +54,14 @@ module tb_id();
         forever #5 clk = ~clk;
     end
 
-id test(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, RegWrite, Jump, JumpM, rs_out, rt_out, imm_out, PC_out);    
+id test(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, RegWrite, Jump, JumpM);    
 
   initial
   begin
-      data_in = 32'b00000000000000000000000000000000;
+      data_in = 32'b00000000000000000000000000000001;
       PC = 4;
-      instr_in = 32'b00000000000000000000000000000000;
+      // NOP, x3 (rd), x2 (rs), x1 (rt), 0
+      instr_in = 32'b00000000110000100000010000000000;
       ALUSrc = 0;
       ALUOp = 4'b000;
       MemRead = 0;
