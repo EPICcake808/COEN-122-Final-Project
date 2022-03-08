@@ -22,7 +22,6 @@
 
 module tb_id();
   reg clk;
-  //input [31:0] rt;
   reg [31:0] data_in;
   reg [31:0] PC;
   reg [31:0] instr_in;
