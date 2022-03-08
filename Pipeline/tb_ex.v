@@ -63,14 +63,23 @@ module tb_ex();
       //alu result = 23+5 = 28
       #50
       
+      //store
+      MemWrite = 1;
+      rs1 = 18;
+      rs2 = 5;
+      data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
+      //storing Mem[x5] = 18
+      #50
+      
       //load
       MemRead = 1;
-      rs1 = 5;
-      rs2 = 18;
+      MemWrite = 0;
+      rs1 = 18;
+      rs2 = 5;
       
       data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
-      //rs1 = mem[rs2]
-      //don't know what data at those memory locations is??
+      // read_data = mem[rs2]
+      //so read_data should be 18
       
       #50
     end
