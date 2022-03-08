@@ -22,7 +22,6 @@
 
 module id(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, RegWrite, Jump, JumpM, rs_out, rt_out, imm_out, PC_out);
   input clk;
-  //input [31:0] rt;
   input [31:0] data_in;
   input [31:0] PC;
   input [31:0] instr_in;
@@ -51,7 +50,7 @@ module id(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrit
 
   controlblock control(clk, instr_in[31:28], ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, Jump, RegWrite, Jump); 
 
-  register_file regfile(clk, RegWrite, instr_in[21:16], instr_in[15:10], rt, data_in, rs_out, rt_out);
+  register_file regfile(clk, RegWrite, instr_in[27:22], instr_in[21:16], instr_in[[15:10], data_in, rs_out, rt_out);
 
   immgen imm(instr_in[21:0], imm_out);
 
