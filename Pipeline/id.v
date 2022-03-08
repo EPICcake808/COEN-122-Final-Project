@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Ian Ohari
+// Engineer: 
 // 
-// Create Date: 01/25/2022 02:59:30 PM
-// Design Name: 8 Bit ALU
-// Module Name: alu
+// Create Date: 03/08/2022 12:22:16 AM
+// Design Name: 
+// Module Name: id
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_decode(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, Jump, RegWrite, Jump rs_out, rt_out, imm_out, PC_out);
+module id(clk, instr_in, data_in, PC, Zero, Neg, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, BranchN, BranchZ, MemtoReg, RegWrite, Jump, JumpM, rs_out, rt_out, imm_out, PC_out);
   input clk;
-  input [31:0] rt;
+  //input [31:0] rt;
   input [31:0] data_in;
   input [31:0] PC;
+  input [31:0] instr_in;
   input ALUSrc;
   input [2:0] ALUOp;
   input MemRead;
