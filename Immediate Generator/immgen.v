@@ -20,11 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module immgen(immin, immout);
+module immgen(Clk, immin, immout);
+    input Clk;
     input [21:0] immin;
     output reg [32:0] immout;
     
-    always @(*) //if we need Clk, just add the Clk here
+    always @(posedge Clk) //if we need Clk, just add the Clk here
     begin
         immout[31:0] = {{10{immin[21]}}, immin[21:0]};
     end
