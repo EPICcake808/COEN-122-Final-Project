@@ -20,7 +20,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 //Do we need to pass in WB controls? I did not
-module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemWrite, MemRead);
+module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
   input clk;
   input [31:0] PC;
   input [31:0] rs1;
@@ -31,15 +31,24 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemWrite, MemR
   input PC_Control;
   input MemWrite;
   input MemRead;
+  input MemtoReg_in;
+  input Jump_in;
+  input RegWrite_in;
+  input JumpM_in;
+
   
   //delete inc from ALU???  <=  Yes, actually I don't think the ALU takes an increment control
   wire [31:0] input1;
   wire [31:0] input2;
-  wire [31:0] ALU_result;
-  wire [31:0] read_data;
+  output [31:0] ALU_result;
+  ouput [31:0] read_data;
   
-  wire Zero;
-  wire Neg;
+  output Zero;
+  output Neg;
+  output MemtoReg_out;
+  output Jump_out;
+  output RegWrite_out;
+  output JumpM_out;
   
   reg add;
   reg inc;
@@ -87,6 +96,10 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemWrite, MemR
 
     always @(*)
     begin
+    MemtoReg_out =  MemtoReg_in;
+    Jump_out =  Jump_in;
+    RegWrite_out =  RegWrite_in;
+    JumpM_out =  JumpM_in;
         case(ALUOp)
         3'b100: begin
                     add = 1;
