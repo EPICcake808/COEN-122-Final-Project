@@ -36,7 +36,7 @@ module IF_ID(clk, PC_in, inst_mem, PC_out, inst_out);
 endmodule
 
 //This is the buffer for ID to EX
-module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemWrite_in, PC_Control_in,  MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, PC_out, reg1, reg2, imm_out, ALUSrc_out, ALUOp_out, MemWrite_out, PC_Control_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
+module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemRead_in, MemWrite_in, PC_Control_in,  MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, PC_out, reg1, reg2, imm_out, ALUSrc_out, ALUOp_out, MemRead_out, MemWrite_out, PC_Control_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
     input [31:0] PC_in;
     input [31:0] data1;
     input [31:0] data2;
