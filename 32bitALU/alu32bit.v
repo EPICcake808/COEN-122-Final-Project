@@ -32,17 +32,23 @@ module alu32bit(A, B, add, inc, neg, sub, out, Z, N);
     wire[31:0] outA;
     wire[31:0] outB;
     wire[31:0] negA;
-    wire[31:0] addout;
+    wire[31:0] negOut;
     wire carryout, nsub;
+    wire[31:0] add_out;
+    wire[31:0] ifout;
     
     not(nsub, sub);
     and(select[0], inc, nsub);
     nor(select[1], add, inc);
 
     twosComp negateA(A, negA);
+    twosComp negateOut(add_out, negOut);
     threeToOne muxA(A, negA, select, outA);
     twoToOne muxB(B, neg, outB);
-    fullAdder full(outA, outB, carryout, out);
+    fullAdder full(outA, outB, carryout, add_out);
+    mux21_32bit ifsub(ifout, add_out, negOut, sub);
+    mux21_32bit laststage(out, ifout, add_out, add);
+    
     
     nor(Z, out[1], out[2], out[3], out[4], out[5], out[6], out[7], out[8], out[9], out[10], out[11], out[12], out[13], out[14], out[15], out[16], out[17], out[18], out[19], out[20], out[21], out[22], out[23], out[24], out[25], out[26], out[27], out[28], out[29], out[30], out[31]);
     assign N = out[31];
@@ -349,3 +355,4 @@ module fullAdder(A, B, cout, sum);
     adder adder31(A[31], B[31], c30, sum[31], cout);
 
 endmodule
+
