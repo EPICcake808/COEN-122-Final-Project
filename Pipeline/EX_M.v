@@ -132,7 +132,8 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
         endcase
     end
        
-  alu32bit alu1(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg);
+  alu test(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg);
+  //alu32bit alu1(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg);
   
   data_memory dm(clk, MemRead, MemWrite, rs1, rs2, read_data);
   
