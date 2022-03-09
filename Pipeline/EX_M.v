@@ -20,7 +20,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 //Do we need to pass in WB controls? I did not
-module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testr1out, testr2out);
+module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testr1out, testr2out);
   input clk;
   input [31:0] PC;
   input [31:0] rs1;
@@ -44,7 +44,7 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
   output [31:0] read_data;
   
   output Zero;
-  output Neg;
+  output Neg_out;
   output MemtoReg_out;
   output Jump_out;
   output RegWrite_out;
@@ -124,16 +124,15 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
                     sub = 1;
                 end
         3'b000: begin
-                    add = 0;
+                    add = 1;
                     inc = 0;
-                    neg = 0;
-                    sub = 0;
+                    neg = 1;
+                    sub = 1;
                 end
         endcase
     end
        
-  alu test(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg);
-  //alu32bit alu1(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg);
+  alu32bit alu1(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg_out);
   
   data_memory dm(clk, MemRead, MemWrite, rs1, rs2, read_data);
   
