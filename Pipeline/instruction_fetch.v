@@ -45,7 +45,7 @@ module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, i
   mux21_32bit m3(m3_out, rs1, m2_out, Branch);
   
   ProgramCounter pc(m3_out, PC_out, clk);
-  PC_out_input = PC_out;
+  assign PC_out_input = PC_out;
   instruction_memory im(clk, PC_out, instr_out);
   
 endmodule
