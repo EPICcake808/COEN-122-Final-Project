@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch);
+module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, instr_out);
   input [31:0] ALU_result;
   input [31:0] read_data;
   input [31:0] rs1;
@@ -35,7 +35,7 @@ module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch);
   wire [31:0] m2_out;
   wire [31:0] m3_out;
   wire [31:0] PC_out;
-  wire [31:0] instr_out;
+  output [31:0] instr_out;
   
   PCAdder adder(PC_out, adder_out);
   
