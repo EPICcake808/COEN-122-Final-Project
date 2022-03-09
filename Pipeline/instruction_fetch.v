@@ -40,9 +40,9 @@ module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, i
   
   PCAdder adder(PC_out, adder_out);
   
-  mux21_32bit m1(m1_out, ALU_result, adder_out, Jump);
-  mux21_32bit m2(m2_out, read_data, m1_out, JumpM);
-  mux21_32bit m3(m3_out, rs1, m2_out, Branch);
+  mux21_32bit m1(m1_out, adder_out, ALU_result, Jump);
+  mux21_32bit m2(m2_out, m1_out, read_data, JumpM);
+  mux21_32bit m3(m3_out, m2_out, rs1, Branch);
   
   ProgramCounter pc(m3_out, PC_out, clk);
   assign PC_out_input = PC_out;
