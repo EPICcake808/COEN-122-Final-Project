@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, instr_out);
+module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, instr_out, PC_out);
   input [31:0] ALU_result;
   input [31:0] read_data;
   input [31:0] rs1;
@@ -34,8 +34,9 @@ module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, i
   wire [31:0] m1_out;
   wire [31:0] m2_out;
   wire [31:0] m3_out;
-  wire [31:0] PC_out;
+  wire [31:0] PC_out_input;
   output [31:0] instr_out;
+  output [31:0] PC_out;
   
   PCAdder adder(PC_out, adder_out);
   
@@ -44,7 +45,7 @@ module instruction_fetch(clk, ALU_result, read_data, rs1, Jump, JumpM, Branch, i
   mux21_32bit m3(m3_out, rs1, m2_out, Branch);
   
   ProgramCounter pc(m3_out, PC_out, clk);
-  
+  PC_out_input = PC_out;
   instruction_memory im(clk, PC_out, instr_out);
   
 endmodule
