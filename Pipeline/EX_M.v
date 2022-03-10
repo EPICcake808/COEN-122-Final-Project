@@ -20,10 +20,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 //Do we need to pass in WB controls? I did not
-module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testr1out, testr2out);
+module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out);
   input clk;
   input [31:0] PC;
-  input [31:0] rs1;
+  input [15:0] rs1;
   input [31:0] rs2;
   input [31:0] immgen;
   input ALUSrc;
@@ -49,8 +49,7 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
   output Jump_out;
   output RegWrite_out;
   output JumpM_out;
-  output [31:0] testr1out;
-  output [31:0] testr2out;
+
   
   reg add;
   reg inc;
@@ -140,7 +139,6 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
     assign Jump_out =  Jump_in;
     assign RegWrite_out =  RegWrite_in;
     assign JumpM_out =  JumpM_in;
-    assign testr1out = input1;
-    assign testr2out = input2;
+
   
 endmodule
