@@ -71,20 +71,20 @@ endmodule
 
 module data_memory(clk, read, wrt, address, data_in, data_out);
     input clk, read, wrt;
-    input [31:0] address;
+    input [15:0] address;
     input [31:0] data_in;
     
     output reg[31:0] data_out;
     
-    reg [31:0] data[65535:0];
+    reg [31:0] data[63:0];
     
     always@(posedge clk)
         begin
             if(wrt ==1)//if write is high, write data into the specific address input
-                data[address[15:0]] = data_in;
+                data[address] = data_in;
 
             if(read ==1)//if read is high, read data at that address
-                data_out = data[address[15:0]];
+                data_out = data[address];
         end
 
 endmodule
