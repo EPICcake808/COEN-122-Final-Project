@@ -20,19 +20,30 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_memory(clk, address, instruction);
+module instruction_memory(clk, address, instr);
     input clk;
     input [31:0] address;
-    output reg [31:0] instruction;
+    output reg [31:0] instr;
     
     wire[31:0] instrs [255:0];
     
-    assign instrs[0] = 16;//hardcode values
+    assign instrs[0] = 32'b01110001000001000001000000000000;//SUB x4, x4, x4
+    assign instrs[1] = 32'b01000001010000100000110000000000;//ADD x5, x2, x3
+    assign instrs[2] = 32'b11110010010000000000000000000001;//SVPC x9, 1
+    assign instrs[3] = 32'b11100001100000100000000000000000;//LD x6, x2
+    assign instrs[4] = 32'b00000000000000000000000000000000;//NOP
+    assign instrs[5] = 32'b00000000000000000000000000000000;//NOP
+    assign instrs[6] = 32'b01000001000001000001100000000000;//ADD x4, x4, x6
+    assign instrs[7] = 32'b01010000100000100000010000000000;//INC x2, x2, 1
+    assign instrs[8] = 32'b00000000000000000000000000000000;//NOP
+    assign instrs[9] = 32'b00000000000000000000000000000000;//NOP
+    assign instrs[10] = 32'b01110010000000100001010000000000;//SUB x8, x2, x5
+    assign instrs[11] = 32'b10110000000010010000000000000000;//BRN x9
 
     //when clk is positive read the value
     always@(posedge clk)
         begin
-            instruction = instrs[address];
+            instr = instrs[address];
         end
 
 endmodule
