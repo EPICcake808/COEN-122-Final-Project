@@ -21,10 +21,10 @@
 
 //This is the buffer for IF to ID
 module IF_ID(clk, PC_in, inst_mem, PC_out, inst_out);
-    input [31:0] PC_in;
+    input [7:0] PC_in;
     input [31:0] inst_mem;
     input clk;
-    output reg [31:0] PC_out;
+    output reg [7:0] PC_out;
     output reg [31:0] inst_out;
     
     always@(posedge clk)
@@ -61,9 +61,9 @@ module ID_EX_M(clk, PC_in, data1, data2, imm_in, ALUSrc_in, ALUOp_in, MemRead_in
     output reg MemWrite_out;
     output reg PC_Control_out;
     output reg MemtoReg_out;
-    output reg Jump;
-    output reg RegWrite;
-    output reg JumpM;
+    output reg Jump_out;
+    output reg RegWrite_out;
+    output reg JumpM_out;
     
     always@(posedge clk)
         begin
@@ -99,9 +99,9 @@ module EX_M_WB (clk, Zero_in, Neg_in, ALU_in, reg2_in, MemtoReg_in, Jump_in, Reg
     output reg [31:0] ALU_out;
     output reg [31:0] reg2_out;
     output reg MemtoReg_out;
-    output reg Jump;
-    output reg RegWrite;
-    output reg JumpM;
+    output reg Jump_out;
+    output reg RegWrite_out;
+    output reg JumpM_out;
     
     always@(posedge clk)
         begin
