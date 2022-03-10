@@ -79,6 +79,7 @@ module cpu();
     assign IFALU_result = WBALU_result;
     assign IFread_data = WBread_data
     assign IDRegWrite = WBRegWrite;
+    assign IDMemtoReg = WBMemtoReg;
     
     initial
     begin
