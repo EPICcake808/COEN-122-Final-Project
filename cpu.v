@@ -27,15 +27,15 @@ module cpu();
     wire [31:0] IFALU_result;
     wire [31:0] IFread_data;
     wire [31:0] IFrs1;
-    wire [31:0] IFJump;
-    wire [31:0] IFJumpM;
-    wire [31:0] IFBranch;
+    wire  IFJump;
+    wire  IFJumpM;
+    wire  IFBranch;
     wire [31:0] IFinstr;
     wire [31:0] IFPC;
     wire [31:0] IDPC;
     wire [31:0] IDinstr;
     
-    instruction_fetch iftest(clk, IFALU_result, IFread_data, IFrs1, IFJump, IFJumpM, IFBranch, IFinstr_out, IFPC);
+    instruction_fetch iftest(clk, IFALU_result, IFread_data, IFrs1, IFJump, IFJumpM, IFBranch, IFinstr, IFPC);
     IF_ID ifid(clk, IFPC, IFinstr, IDPC, IDinstr);
     
     // id 
@@ -43,7 +43,7 @@ module cpu();
     wire [31:0] IDPC_out;
     wire [31:0] IDR1;
     wire [31:0] IDR2;
-    wire [21:0] IDimmgen;
+    wire [31:0] IDimmgen;
     wire IDBranch, IDALUSrc, IDMemRead, IDMemWrite, IDPCControl, IDMemtoReg, IDJump, IDRegWrite, IDJumpM, IDZero, IDNeg, IDALUOp;
     wire [31:0] EXPC;
     wire [31:0] EXR1;
@@ -51,7 +51,8 @@ module cpu();
     wire [31:0] EXimmgen;
     wire EXALUSrc, EXALUOp, EXMemRead, EXMemWrite, EXPCControl, EXMemtoReg, EXJump, EXRegWrite, EXJumpM;
     
-    id idtest(clk, IDinstr, IDdatawrite, IDPC, IDBranch, IDPC_out, IDR1, IDR2, IDimmgen, IDALUSrc, IDMemRead, IDMemWrite, IDPCControl, IDMemtoReg, IDJump, IDRegWrite, IDJumpM, IDZero, IDNeg, IDALUOp);
+    
+    id idtest(clk, IDinstr, IDdatawrite, IDPC, IDBranch, IDPC_out, IDR1, IDR2, IDimmgen, WBRegWrite, IDALUSrc, IDMemRead, IDMemWrite, IDPCControl, IDMemtoReg, IDJump, IDRegWrite, IDJumpM, IDZero, IDNeg, IDALUOp);
     ID_EX_M idexm(clk, IDPC_out, IDR1, IDR2, IDimmgen, IDALUSrc, IDALUOp, IDMemRead, IDMemWrite, IDPCControl, IDMemtoReg, IDJump, IDRegWrite, IDJumpM, EXPC, EXR1, EXR2, EXimmgen, EXALUSrc, EXALUOp, EXMemRead, EXMemWrite, EXPCControl, EXMemtoReg, EXJump, EXRegWrite, EXJumpM);
     
     assign IFBranch = IDBranch;
@@ -72,18 +73,18 @@ module cpu();
     assign IDNeg = EXNeg;
     
     // wb
-    write_back wbtest(clk, WBALU_result, WBread_data, WBMemtoReg);
+    wire [31:0] WBwrite_data;
+    write_back wbtest(clk, WBALU_result, WBread_data, WBMemtoReg, WBwrite_data);
     
     assign IFJumpM = WBJumpM;
     assign IFJump = WBJump;
     assign IFALU_result = WBALU_result;
     assign IFread_data = WBread_data;
-    assign IDRegWrite = WBRegWrite;
-    assign IDMemtoReg = WBMemtoReg;
+    assign IDdatawrite = WBwrite_data;
     
     initial
     begin
-        clk = 0;
+        clk = 1;
         forever #5 clk = ~clk;
     end
 
