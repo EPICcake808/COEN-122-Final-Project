@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module write_back(clk, AlU_result, read_data, MemtoReg);
+module write_back(clk, ALU_result, read_data, MemtoReg);
   input clk;
   input [31:0] ALU_result;
   input [31:0] read_data;
