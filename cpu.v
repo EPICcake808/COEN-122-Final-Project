@@ -55,6 +55,7 @@ module cpu();
     ID_EX_M idexm(clk, IDPC_out, IDR1, IDR2, IDimmgen, IDALUSrc, IDALUOp, IDMemRead, IDMemWrite, IDPCControl, IDMemtoReg, IDJump, IDRegWrite, IDJumpM, EXPC, EXR1, EXR2, EXimmgen, EXALUSrc, EXALUOp, EXMemRead, EXMemWrite, EXPCControl, EXMemtoReg, EXJump, EXRegWrite, EXJumpM);
     
     assign IFBranch = IDBranch;
+    assign IFrs1 = IDR1;
     
     // ex m
     wire [31:0] EXALU_result;
@@ -67,12 +68,16 @@ module cpu();
     EX_M exmtest(clk, EXPC, EXR1, EXR2, EXimmgen, EXALUSrc, EXALUOp, EXPCControl, EXMemRead, EXMemWrite, EXMemtoReg, EXJump, EXRegWrite, EXJumpM, EXALU_result, EXZero, EXNeg, EXread_data, EXMemtoReg_out, EXJump_out, EXRegWrite_out, EXJumpM_out);
     EX_M_WB exmwb(clk, EXZero, EXNeg, EXALU_result, EXread_data, EXMemtoReg_out, EXJump_out, EXRegWrite_out, EXJumpM_out, WBZero, WBNeg, WBALU_result, WBread_data, WBMemtoReg, WBJump, WBRegWrite, WBJumpM);
     
-    // wb
+    assign IDZero = EXZero;
+    assign IDNeg = EXNeg;
     
+    // wb
     write_back wbtest(clk, WBALU_result, WBread_data, WBMemtoReg);
     
     assign IFJumpM = WBJumpM;
     assign IFJump = WBJump;
+    assign IFALU_result = WBALU_result;
+    assign IFread_data = WBread_data
     assign IDRegWrite = WBRegWrite;
     
     initial
