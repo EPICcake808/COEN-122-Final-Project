@@ -68,8 +68,6 @@ module cpu();
     EX_M_WB exmwb(clk, EXZero, EXNeg, EXALU_result, EXread_data, EXMemtoReg_out, EXJump_out, EXRegWrite_out, EXJumpM_out, WBZero, WBNeg, WBALU_result, WBread_data, WBMemtoReg, WBJump, WBRegWrite, WBJumpM);
     
     // wb
-    wire [31:0] WBALU_result;
-    wire [31:0] WBread_data;
     
     write_back wbtest(clk, WBALU_result, WBread_data, WBMemtoReg);
     
