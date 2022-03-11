@@ -45,6 +45,16 @@ module instruction_memory(clk, address, instr);
     assign instrs[9] = 32'b00000000000000000000000000000000;//NOP
     assign instrs[10] = 32'b00000000000000000000000000000000;//NOP
     
+    /**   
+    //jump mem and store
+    assign instrs[5] = 32'b00110000000000110010100000000000; //STR Mem[x3] = x10 
+    assign instrs[6] = 0;
+    assign instrs[7] = 0;
+    assign instrs[8] = 32'b10100000000001000000000000000000; //JM PC = Mem[x4]
+    */
+    
+
+    
     assign instrs[11] = 32'b01000001000001000001100000000000;//ADD x4, x4, x6
     assign instrs[12] = 32'b01010000100000100000000000000001;//INC x2, x2, 1
     assign instrs[13] = 32'b00000000000000000000000000000000;//NOP
