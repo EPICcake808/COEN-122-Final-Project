@@ -25,6 +25,6 @@ module write_back(ALU_result, read_data, MemtoReg, mux_output);
   input MemtoReg;
   output [31:0] mux_output;
   
-  mux21_32bit m1(mux_output, read_data, ALU_result, MemtoReg);
+  mux21_32bit m1(mux_output, ALU_result, read_data, MemtoReg);
   
 endmodule

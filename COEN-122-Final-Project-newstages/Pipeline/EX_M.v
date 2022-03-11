@@ -20,7 +20,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 //Do we need to pass in WB controls? I did not
-module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testin1, testin2);
+module EX_M(clk, PC, rs1, rs2, immgen, EXrd_in, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, EXrd_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testin1, testin2);
   input clk;
   input [31:0] PC;
   input [31:0] rs1;
@@ -35,6 +35,7 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
   input Jump_in;
   input RegWrite_in;
   input JumpM_in;
+  input [5:0] EXrd_in;
 
   
   //delete inc from ALU???  <=  Yes, actually I don't think the ALU takes an increment control
@@ -42,6 +43,7 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
   wire [31:0] input2;
   output [31:0] ALU_result;
   output [31:0] read_data;
+  output [5:0] EXrd_out;
   
   output Zero;
   output Neg_out;
@@ -144,6 +146,6 @@ module EX_M(clk, PC, rs1, rs2, immgen, ALUSrc, ALUOp, PC_Control, MemRead, MemWr
     assign JumpM_out =  JumpM_in;
     assign testin1 = input1;
     assign testin2 = input2;
-    
+    assign EXrd_out = EXrd_in;
   
 endmodule

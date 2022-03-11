@@ -35,7 +35,7 @@ module controlblock(clk, opcode, ALUSrc, ALUOp, MemRead, MemWrite, PC_Control, B
     output reg RegWrite;
     output reg JumpM;
     
-    always@(posedge clk)
+    always@(negedge clk)
     begin
     //NOP everything should be zero
     ALUSrc = 0;
