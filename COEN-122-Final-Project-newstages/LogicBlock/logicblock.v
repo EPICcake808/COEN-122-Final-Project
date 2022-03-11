@@ -38,7 +38,7 @@ module instruction_memory(clk, address, instr);
     assign instrs[7] = 0;
     assign instrs[8] = 32'b01000000000001000001100000000000;
     */
-    assign instrs[5] = 32'b01110001000001000001000000000000;//SUB x4, x4, x4
+    assign instrs[5] = 32'b01110000000000000000000000000000;//SUB x0, x0, x0
     assign instrs[6] = 32'b01000001010000100000110000000000;//ADD x5, x2, x3
     assign instrs[7] = 32'b11110010010000000000000000000001;//SVPC x9, 1
     assign instrs[8] = 32'b11100001100000100000000000000000;//LD x6, x2
@@ -55,7 +55,7 @@ module instruction_memory(clk, address, instr);
     
 
     
-    assign instrs[11] = 32'b01000001000001000001100000000000;//ADD x4, x4, x6
+    assign instrs[11] = 32'b01000000000000000001100000000000;//ADD x0, x0, x6
     assign instrs[12] = 32'b01010000100000100000000000000001;//INC x2, x2, 1
     assign instrs[13] = 32'b00000000000000000000000000000000;//NOP
     assign instrs[14] = 32'b00000000000000000000000000000000;//NOP
@@ -63,7 +63,7 @@ module instruction_memory(clk, address, instr);
     assign instrs[16] = 32'b10110000000010010000000000000000;//BRN x9
     //assign instrs[16] = 32'b10110000000010100000000000000000;
     assign instrs[17] = 0;
-    assign instrs[18] = 0;
+    //assign instrs[18] = 0;
     //assign instrs[20] = 32'b01000000000000000001000000000000;//ADD x0, x0, x4
     
     //assign instrs[11] = 32'b01000000000001000001100000000000;//ADD x0, x0, x6
