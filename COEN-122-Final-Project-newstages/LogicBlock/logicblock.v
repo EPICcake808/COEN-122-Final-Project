@@ -28,10 +28,10 @@ module instruction_memory(clk, address, instr);
     wire[31:0] instrs [255:0];
     
     assign instrs[0] = 0;
-    assign instrs[1] = 0;
-    assign instrs[2] = 0;
-    assign instrs[3] = 0;
-    assign instrs[4] = 0;
+    //assign instrs[1] = 0;
+    //assign instrs[2] = 0;
+    //assign instrs[3] = 0;
+    //assign instrs[4] = 0;
 /*
     assign instrs[5] = 32'b11100001100000100000000000000000;
     assign instrs[6] = 0;
