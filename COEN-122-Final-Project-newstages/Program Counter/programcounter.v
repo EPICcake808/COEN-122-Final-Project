@@ -25,13 +25,6 @@ module ProgramCounter(PCin, PCout, Clk);
     input Clk;
     output reg [31:0] PCout;
     
-//Implemented in testbench (I think)    
-/*    
-    initial
-    begin
-        PCResult <= 32'h00000000;
-    end
-*/
     initial
     begin
         PCout = 0;
