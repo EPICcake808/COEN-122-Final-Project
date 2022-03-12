@@ -19,7 +19,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-//Do we need to pass in WB controls? I did not
+
 module EX_M(clk, PC, rs1, rs2, immgen, EXrd_in, ALUSrc, ALUOp, PC_Control, MemRead, MemWrite, MemtoReg_in, Jump_in, RegWrite_in, JumpM_in, ALU_result, Zero, Neg_out, read_data, EXrd_out, MemtoReg_out, Jump_out, RegWrite_out, JumpM_out, testin1, testin2);
   input clk;
   input [31:0] PC;
@@ -37,8 +37,6 @@ module EX_M(clk, PC, rs1, rs2, immgen, EXrd_in, ALUSrc, ALUOp, PC_Control, MemRe
   input JumpM_in;
   input [5:0] EXrd_in;
 
-  
-  //delete inc from ALU???  <=  Yes, actually I don't think the ALU takes an increment control
   wire [31:0] input1;
   wire [31:0] input2;
   output [31:0] ALU_result;
@@ -67,33 +65,6 @@ module EX_M(clk, PC, rs1, rs2, immgen, EXrd_in, ALUSrc, ALUOp, PC_Control, MemRe
   //mux(out, 0, 1, control)
   mux21_32bit m1(input1, rs1, PC, PC_Control);
   mux21_32bit m2(input2, rs2, immgen, ALUSrc);
-  
-  
-
-//  assign add = 0;
-//  assign inc = 0;
-//  assign neg = 0;
-//  assign sub = 0;
-
-//  if(ALUOp == 3'b100)
-//    begin
-//      assign add = 1;    
-//    end
-//  else if(ALUOp == 3'b010)
-//    begin
-//      assign neg = 1;
-//    end
-//  else if(ALUOp == 3'b001)
-//    begin
-//      assign sub = 1;
-//    end
-//  if(ALUOp == 3'b111)
-//   begin
-//      assign add = 1;
-//      assign sub = 1;
-//      assign neg = 1;
-//    end
-
 
 //IMPORTANT
 //I had to set the ALUOp "controls" to reg types because continuous assignment doesn't work without a control block
@@ -136,7 +107,6 @@ module EX_M(clk, PC, rs1, rs2, immgen, EXrd_in, ALUSrc, ALUOp, PC_Control, MemRe
     end
        
   alu32bit alu1(input1, input2, add, inc, neg, sub, ALU_result, Zero, Neg_out);
-//    alu32bit alu1(input1, input2, ALUOp, ALU_result, Zero, Neg_out);
   
   data_memory dm(clk, MemRead, MemWrite, rs1, rs2, read_data);
   
