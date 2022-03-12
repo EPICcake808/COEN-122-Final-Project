@@ -27,46 +27,21 @@ module instruction_memory(clk, address, instr);
     
     wire[31:0] instrs [255:0];
     
-    assign instrs[0] = 0;
-    //assign instrs[1] = 0;
-    //assign instrs[2] = 0;
-    //assign instrs[3] = 0;
-    //assign instrs[4] = 0;
-/*
-    assign instrs[5] = 32'b11100001100000100000000000000000;
-    assign instrs[6] = 0;
-    assign instrs[7] = 0;
-    assign instrs[8] = 32'b01000000000001000001100000000000;
-    */
-    assign instrs[1] = 32'b01110000000000000000000000000000;//SUB x0, x0, x0
+    assign instrs[0] = 32'b00000000000000000000000000000000;//NOP
+    assign instrs[1] = 32'b01110001000001000001000000000000;//SUB x4, x4, x4
     assign instrs[2] = 32'b01000001010000100000110000000000;//ADD x5, x2, x3
     assign instrs[3] = 32'b11110010010000000000000000000001;//SVPC x9, 1
     assign instrs[4] = 32'b11100001100000100000000000000000;//LD x6, x2
     assign instrs[5] = 32'b00000000000000000000000000000000;//NOP
     assign instrs[6] = 32'b00000000000000000000000000000000;//NOP
-    
-    /**   
-    //jump mem and store
-    assign instrs[5] = 32'b00110000000000110010100000000000; //STR Mem[x3] = x10 
-    assign instrs[6] = 0;
-    assign instrs[7] = 0;
-    assign instrs[8] = 32'b10100000000001000000000000000000; //JM PC = Mem[x4]
-    */
-    
-
-    
-    assign instrs[7] = 32'b01000000000000000001100000000000;//ADD x0, x0, x6
-    assign instrs[8] = 32'b01010000100000100000000000000001;//INC x2, x2, 1
+    assign instrs[7] = 32'b01000001000001000001100000000000;//ADD x4, x4, x6
+    assign instrs[8] = 32'b01010000100000100000010000000000;//INC x2, x2, 1
     assign instrs[9] = 32'b00000000000000000000000000000000;//NOP
     assign instrs[10] = 32'b00000000000000000000000000000000;//NOP
     assign instrs[11] = 32'b01110010000000100001010000000000;//SUB x8, x2, x5
     assign instrs[12] = 32'b10110000000010010000000000000000;//BRN x9
-    //assign instrs[16] = 32'b10110000000010100000000000000000;
-    assign instrs[13] = 0;
-    //assign instrs[18] = 0;
-    //assign instrs[20] = 32'b01000000000000000001000000000000;//ADD x0, x0, x4
-    
-    //assign instrs[11] = 32'b01000000000001000001100000000000;//ADD x0, x0, x6
+    assign instrs[13] = 32'b00000000000000000000000000000000;//NOP
+
     
     //when clk is positive read the value
     always@(negedge clk)
