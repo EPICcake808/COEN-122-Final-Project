@@ -19,44 +19,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-/*
-module alu32bit(A, B, ALUOp, out, Z, N);
-    input [31:0] A, B;
-    input [2:0] ALUOp;
-    output [31:0] out;
-    output Z, N;
-    
-    reg [31:0] out;
-    reg Z, N;
-    
-    always@(A, B, ALUOp) begin
-        case(ALUOp)
-            3'b000: out = A;
-            3'b001: out = B - A;
-            3'b010: out = -B;
-            3'b100: out = B + A;
-            3'b111: out = A;
-        endcase
-    end
-    
-    always@(ALUOp, out) begin
-        if(ALUOp != 3'b111) begin
-            if(ALUOp != 3'b000) begin
-                Z = 0;
-                N = 0;
-                if(out == 32'd0) begin
-                    N = 0;
-                    Z = 1;
-                end
-                if(out == 32'd1) begin
-                    N = 1;
-                    Z = 0;
-                end
-            end
-        end
-    end
-endmodule        
-*/
+
 module alu32bit(A, B, add, inc, neg, sub, out, Z, N);
     input [31:0] A;
     input [31:0] B;
