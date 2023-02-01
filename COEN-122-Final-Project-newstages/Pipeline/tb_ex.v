@@ -46,7 +46,9 @@ module tb_ex();
         clk = 0;
         forever #5 clk = ~clk;
     end
-  
+  ALU test1(rs1, rs2, add, inc, neg, sub, ALU_result, Zero, Neg);
+  data_memory test2(clk, MemRead, MemWrite, rs1, rs2, read_data);
+ 
   initial
     begin
       //add
@@ -59,7 +61,7 @@ module tb_ex();
       MemWrite = 0;
       MemRead = 0;
       
-      ALU alu(rs1, rs2, add, inc, neg, sub, ALU_result, Zero, Neg);
+      //ALU test(rs1, rs2, add, inc, neg, sub, ALU_result, Zero, Neg);
       //alu result = 23+5 = 28
       #50
       
@@ -67,7 +69,7 @@ module tb_ex();
       MemWrite = 1;
       rs1 = 18;
       rs2 = 5;
-      data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
+      //data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
       //storing Mem[x5] = 18
       #50
       
@@ -77,11 +79,12 @@ module tb_ex();
       rs1 = 18;
       rs2 = 5;
       
-      data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
+      //data_memory test(clk, MemRead, MemWrite, rs1, rs2, read_data);
       // read_data = mem[rs2]
       //so read_data should be 18
       
       #50
+      $finish;
     end
   
 endmodule

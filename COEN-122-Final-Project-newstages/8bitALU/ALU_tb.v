@@ -1,3 +1,4 @@
+/*
 module alu_tb();
     
     reg [31:0] A;
@@ -41,3 +42,4 @@ module alu_tb();
         $finish;
     end
 endmodule
+*/
